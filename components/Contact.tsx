@@ -95,8 +95,8 @@ const Contact: React.FC = () => {
   return (
     <>
       <section>
-        <div className="container mx-auto flex justify-between desktop:pt-[84px] tablet:pb-[92px] pt-[60px] pb-[92px]">
-          <div>
+        <div className="container mx-auto flex desktop:flex-row desktop:justify-between flex-col desktop:pt-[84px] tablet:pb-[92px] pt-[60px] pb-[92px]">
+          <div className="max-w-[445px] max-desktop:mx-auto desktop:text-start text-center flex flex-col desktop:gap-y-8 gap-y-[20px]">
             <h2 className="font-bold text-white desktop:tracking-[-2.5px] desktop:leading-[88px] desktop:text-[88px] tablet:text-[72px] tablet:leading-[72px] tablet:tracking-[-2.04545px] text-[40px] leading-[40px] tracking-[-1.13636px]">
               Contact
             </h2>
@@ -108,7 +108,7 @@ const Contact: React.FC = () => {
           <form
             onSubmit={handleSubmit}
             autoComplete="off"
-            className="flex flex-col w-full max-w-[445px] text-end"
+            className="desktop:mx-0 flex flex-col w-full max-w-[445px] mx-auto text-end"
           >
             <input
               className={`bg-transparent caret-white border-solid text-white uppercase placeholder:text-[16px] placeholder:leading-[26px] placeholder:uppercase placeholder:tracking-[-0.222222px] placeholder:text-white placeholder:opacity-60 border-b  outline-0 mt-8 pl-6 pb-[17px] ${

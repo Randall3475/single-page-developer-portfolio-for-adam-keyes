@@ -5,19 +5,23 @@ import {
   Projects,
   Contact,
   Footer,
-} from '@/components';
+} from "@/components";
 
 export default function Home() {
   return (
     <>
       <Header />
       <Hero />
-      <hr className="container mx-auto" />
+      <div className="container mx-auto">
+        <hr />
+      </div>
       <Technologies />
       <Projects />
       <div className="bg-secondary-gray">
         <Contact />
-        <hr className="container mx-auto" />
+        <div className="container mx-auto">
+          <hr />
+        </div>
         <Footer />
       </div>
     </>

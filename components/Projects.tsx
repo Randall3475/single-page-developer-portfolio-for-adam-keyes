@@ -18,6 +18,7 @@ const Projects = () => {
             <article>
               <div className="relative group desktop:cursor-pointer desktop:hover:after:block after:hidden after:absolute after:h-full after:w-full after:top-0 after:bg-black after:opacity-75">
                 <Image
+                  className="w-full"
                   src="/images/thumbnail-project-1-large.webp"
                   width={540}
                   height={400}
@@ -62,6 +63,7 @@ const Projects = () => {
             </article>
             <article>
               <Image
+                className="w-full"
                 src="/images/thumbnail-project-2-large.webp"
                 width={540}
                 height={400}
@@ -77,6 +79,7 @@ const Projects = () => {
             </article>
             <article>
               <Image
+                className="w-full"
                 src="/images/thumbnail-project-3-large.webp"
                 width={540}
                 height={400}
@@ -93,6 +96,7 @@ const Projects = () => {
             </article>
             <article>
               <Image
+                className="w-full"
                 src="/images/thumbnail-project-4-large.webp"
                 width={540}
                 height={400}
@@ -109,6 +113,7 @@ const Projects = () => {
             </article>
             <article>
               <Image
+                className="w-full"
                 src="/images/thumbnail-project-5-large.webp"
                 width={540}
                 height={400}
@@ -125,6 +130,7 @@ const Projects = () => {
             </article>
             <article>
               <Image
+                className="w-full"
                 src="/images/thumbnail-project-6-large.webp"
                 width={540}
                 height={400}
