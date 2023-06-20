@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from "react";
 const Contact: React.FC = () => {
   const isFirstRenderName = useRef(true);
   const isFirstRenderEmail = useRef(true);
+
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState("");
   const [nameValid, setNameValid] = useState(false);
