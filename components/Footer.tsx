@@ -1,6 +1,6 @@
-import Image from 'next/image';
+import Image from "next/image";
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <>
       <footer>
