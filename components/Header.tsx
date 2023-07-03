@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
     <>
       <header className="desktop:pt-[39px] tablet:pt-[29px] pt-[20px] relative z-50">

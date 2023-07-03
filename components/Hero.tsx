@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const Hero = () => {
+const Hero: React.FC = () => {
   return (
     <>
       <section className="desktop:h-[720px] tablet:h-[600px] max-tablet:pb-[80px]">
@@ -9,9 +9,8 @@ const Hero = () => {
             <h2 className="font-bold text-white desktop:tracking-[-2.5px] desktop:leading-[88px] desktop:text-[88px] tablet:text-[72px] tablet:leading-[72px] tablet:tracking-[-2.04545px] text-[40px] leading-[40px] tracking-[-1.13636px]">
               Nice to <br className="desktop:hidden tablet:block hidden" /> meet
               you! <br className="tablet:hidden flex" />
-              I’m
-              <span className="underline underline-offset-[18px] decoration-4 decoration-primary-neon">
-                {" "}
+              I’m{" "}
+              <span className="underline tablet:underline-offset-[18px] underline-offset-[8px] decoration-4 decoration-primary-neon">
                 Adam Keyes
               </span>
               .
@@ -24,7 +23,7 @@ const Hero = () => {
               Contact me
             </button>
           </div>
-          <picture className="tablet:absolute top-0 max-desktop:right-0 max-tablet:mt-[-92px]">
+          <picture className="tablet:absolute top-0 max-desktop:right-0 max-tablet:mt-[-92px] isolate relative">
             <source
               media="(min-width:1110px)"
               srcSet="/images/image-profile-desktop.webp"

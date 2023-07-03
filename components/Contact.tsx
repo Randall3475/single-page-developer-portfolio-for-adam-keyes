@@ -1,95 +1,20 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useForm } from "react-hook-form";
 
-const Contact: React.FC = () => {
-  const isFirstRenderName = useRef(true);
-  const isFirstRenderEmail = useRef(true);
+const Contact: React.FC = async () => {
+  const form = useForm<FormValues>();
+  const { register, control, handleSubmit, formState, watch } = form;
+  const { errors } = formState;
 
-  const [name, setName] = useState("");
-  const [nameError, setNameError] = useState("");
-  const [nameValid, setNameValid] = useState(false);
-
-  const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [emailValid, setEmailValid] = useState(false);
-
-  // VALIDATE FUNCTIONS
-  const checkEmpty = (value: string) => {
-    const emptyPattern = /^\s*$/;
-    return emptyPattern.test(value);
+  type FormValues = {
+    username: string;
+    email: string;
+    message: string;
   };
 
-  const validateName = (value: string) => {
-    const namePattern = /^[A-Za-z]+$/;
-    return namePattern.test(value);
-  };
-
-  const validateEmail = (value: string) => {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(value);
-  };
-
-  // INPUT CHANGE
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
-
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-
-  // useEffect
-
-  useEffect(() => {
-    if (isFirstRenderName.current) {
-      isFirstRenderName.current = false;
-      return;
-    }
-
-    const delayDebounce = setTimeout(() => {
-      if (checkEmpty(name)) {
-        return setNameError("Field cannot be left empty");
-      }
-
-      if (validateName(name)) {
-        setNameValid(true);
-        setNameError("");
-      } else {
-        setNameError("Sorry, invalid format here");
-      }
-    }, 1000);
-    return () => {
-      clearTimeout(delayDebounce);
-    };
-  }, [name]);
-
-  useEffect(() => {
-    if (isFirstRenderEmail.current) {
-      isFirstRenderEmail.current = false;
-      return;
-    }
-
-    const delayDebounce = setTimeout(() => {
-      if (checkEmpty(email)) {
-        return setEmailError("Field cannot be left empty");
-      }
-
-      if (validateEmail(email)) {
-        setEmailValid(true);
-        setEmailError("");
-      } else {
-        setEmailError("Sorry, invalid format here");
-      }
-    }, 1000);
-    return () => {
-      clearTimeout(delayDebounce);
-    };
-  }, [email]);
-
-  // FORM SUBMISSION
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = (data: FormValues) => {
+    console.log("Form submitted", data);
   };
 
   return (
@@ -101,41 +26,37 @@ const Contact: React.FC = () => {
               Contact
             </h2>
             <p className="text-misc-white capitalize font-medium tablet:text-lg text-[16px] leading-[26px] desktop:max-w-[445px]">
-              Based in the UK, I’m a front-end developer passionate about
-              building accessible web apps that users love.
+              I would love to hear about your project and how I could help.
+              Please fill in the form, and I’ll get back to you as soon as
+              possible.
             </p>
           </div>
           <form
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(onSubmit)}
             autoComplete="off"
+            noValidate
             className="desktop:mx-0 flex flex-col w-full max-w-[445px] mx-auto text-end"
           >
             <input
-              className={`bg-transparent caret-white border-solid text-white uppercase placeholder:text-[16px] placeholder:leading-[26px] placeholder:uppercase placeholder:tracking-[-0.222222px] placeholder:text-white placeholder:opacity-60 border-b  outline-0 mt-8 pl-6 pb-[17px] ${
-                nameValid && "border-primary-neon"
-              }
-               ${nameError && "border-error"}`}
-              type="text"
+              className={`bg-transparent caret-white placeholder:text-[16px] placeholder:leading-[26px] placeholder:uppercase placeholder:tracking-[-0.222222px] placeholder:text-white placeholder:opacity-60 border-b
+               border-solid outline-0 mt-8 pl-6 pb-[17px] text-white uppercase focus-within:border-emerald-400`}
+              type="name"
               name="name"
               placeholder="Name"
-              value={name}
-              onChange={handleNameChange}
+              {...register("username", { required: "Username is required" })}
             />
-            {nameError && <p className="text-error mt-[5px]">{nameError}</p>}
+            <p className="text-red-400">{errors.username?.message}</p>
+
             <input
-              className={`bg-transparent caret-white placeholder:text-[16px] placeholder:leading-[26px] placeholder:uppercase placeholder:tracking-[-0.222222px] placeholder:text-white placeholder:opacity-60 border-b ${
-                emailValid && "border-primary-neon"
-              } ${emailError && "border-error"}
-               border-solid outline-0 mt-8 pl-6 pb-[17px] text-white uppercase`}
-              type="email"
+              className={`bg-transparent caret-white placeholder:text-[16px] placeholder:leading-[26px] placeholder:uppercase placeholder:tracking-[-0.222222px] placeholder:text-white placeholder:opacity-60 border-b 
+               border-solid outline-0 mt-8 pl-6 pb-[17px] text-white uppercase focus-within:border-emerald-400`}
+              type="text"
               name="email"
               placeholder="Email"
-              value={email}
-              onChange={handleEmailChange}
             />
-            {emailError && <p className="text-error mt-[5px]">{emailError}</p>}
+
             <textarea
-              className="bg-transparent caret-white placeholder:text-[16px] placeholder:leading-[26px] placeholder:uppercase placeholder:tracking-[-0.222222px] placeholder:text-white placeholder:opacity-60 border-b border-white border-solid outline-0 mt-8 pl-6 pb-[17px]"
+              className={`resize-none bg-transparent h-24 caret-white placeholder:leading-[26px] placeholder:text-[16px] placeholder:tracking-[-0.222222px] uppercase tracking-[-0.222222px] text-white placeholder:text-white placeholder:opacity-60 border-b border-solid outline-0 mt-8 pl-6 pb-[17px] focus-within:border-emerald-400`}
               name="message"
               placeholder="Message"
             />
